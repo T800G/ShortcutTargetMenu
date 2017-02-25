@@ -1,0 +1,47 @@
+HKLM
+{
+	NoRemove Software
+	{
+		NoRemove Classes
+		{
+			NoRemove lnkfile
+			{
+				NoRemove ShellEx
+				{
+					NoRemove ContextMenuHandlers
+					{
+						TargetShell.ShellCtxMenu = s '{7FFBA480-8BC9-443D-989F-5EBCE907569C}'
+					}
+				}
+			}
+			
+			NoRemove CLSID
+			{
+				ForceRemove {7FFBA480-8BC9-443D-989F-5EBCE907569C} = s 'TargetShell.ShellCtxMenu'
+				{
+					InprocServer32 = s '%MODULE%'
+					{
+						val ThreadingModel = s 'Apartment'
+					}
+				}
+			}
+		}
+		
+		NoRemove Microsoft
+		{
+			NoRemove Windows
+			{
+				NoRemove CurrentVersion
+				{
+					NoRemove 'Shell Extensions'
+					{
+						NoRemove Approved
+						{
+							val {7FFBA480-8BC9-443D-989F-5EBCE907569C} = s 'TargetShell.ShellCtxMenu'
+						}
+					}
+				}
+			}
+		}
+	}
+}
